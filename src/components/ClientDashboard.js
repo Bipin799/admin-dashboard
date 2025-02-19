@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-//import Avatar from '@mui/material/Avatar';
 import { createTheme } from '@mui/material/styles';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -15,7 +14,6 @@ import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-//import PaymentIcon from '@mui/icons-material/Payment'; // Import the Payment Icon
 import { useState, useEffect } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -36,7 +34,6 @@ import {
    TextField,
    FormControl,
    InputLabel,
-   Grid,
    Select,
    Switch,
   } from '@mui/material'; // Correct imports
@@ -104,23 +101,14 @@ function DemoPageContent({ pathname}) {
   };
 
   const handleChange = (e) => {
+    setProfile({ ...profile, [e.target.name]: e.target.value });
     const { name, value } = e.target;
     setSettings((prev) => ({ ...prev, [name]: value }));
   };
-
-  // Handle Input Change
-  // const handleChange = (e) => {
-  //   setProfile({ ...profile, [e.target.name]: e.target.value });
-  // };
-
-  // const handleSave = () => {
-  //   alert("Settings Updated Successfully!");
-  // };
-
   // Save Changes
   const handleSave = () => {
     setIsEditing(false);
-    alert("Profile Updated Successfully!");
+    alert("data Updated Successfully!");
   };
 
   useEffect(() => {
@@ -178,7 +166,7 @@ function DemoPageContent({ pathname}) {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-
+  
     // Handle Buy Now Click → Show Payment Options
     const handleBuyNow = () => {
       setShowPayment(true);
@@ -406,175 +394,48 @@ function DemoPageContent({ pathname}) {
         </Box>
       )}
 
+{pathname === "/profile" && (
+<Box
+  sx={{
+    display: "grid",
+    gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+    gap: 2,
+  }}
+>
+  <TextField label="First Name" name="firstName" value={profile.firstName} onChange={handleChange} fullWidth disabled={!isEditing} />
+  <TextField label="Middle Name" name="middleName" value={profile.middleName} onChange={handleChange} fullWidth disabled={!isEditing} />
+  <TextField label="Last Name" name="lastName" value={profile.lastName} onChange={handleChange} fullWidth disabled={!isEditing} />
+  <TextField label="Father's Name" name="fatherName" value={profile.fatherName} onChange={handleChange} fullWidth disabled={!isEditing} />
+  <TextField label="Phone Number" name="phoneNumber" value={profile.phoneNumber} onChange={handleChange} fullWidth disabled={!isEditing} />
+  <TextField label="Email" name="email" value={profile.email} onChange={handleChange} fullWidth disabled={!isEditing} />
+  <TextField label="Date of Birth" type="date" name="dob" value={profile.dob} onChange={handleChange} fullWidth InputLabelProps={{ shrink: true }} disabled={!isEditing} />
+  <FormControl fullWidth disabled={!isEditing}>
+    <InputLabel>Gender</InputLabel>
+    <Select name="gender" value={profile.gender} onChange={handleChange}>
+      <MenuItem value="Male">Male</MenuItem>
+      <MenuItem value="Female">Female</MenuItem>
+      <MenuItem value="Other">Other</MenuItem>
+    </Select>
+  </FormControl>
+  <TextField label="Home Address" name="homeAddress" value={profile.homeAddress} onChange={handleChange} fullWidth disabled={!isEditing} />
+  <TextField label="Office Address" name="officeAddress" value={profile.officeAddress} onChange={handleChange} fullWidth disabled={!isEditing} />
+  <TextField label="Pincode" name="pincode" value={profile.pincode} onChange={handleChange} fullWidth disabled={!isEditing} />
 
-   
+  {/* Edit & Save Buttons */}
+  <Stack direction="row" spacing={2} justifyContent="center" sx={{ mt: 3 }}>
+        {isEditing ? (
+          <Button variant="contained" color="success" onClick={handleSave}>
+            Save Changes
+          </Button>
+        ) : (
+          <Button variant="contained" color="primary" onClick={() => setIsEditing(true)}>
+            Edit Profile
+          </Button>
+        )}
+      </Stack>
 
-      {pathname === '/profile' && (
-          <Box
-          sx={{
-            maxWidth: 600,
-            mx: "auto",
-            mt: 4,
-            p: 3,
-            bgcolor: "#f9f9f9",
-            borderRadius: 2,
-            boxShadow: 2,
-          }}
-        >
-          <Typography variant="h5" sx={{ mb: 3 }}>
-            Profile Information
-          </Typography>
-
-          <Grid container spacing={2}>
-            {/* First Name */}
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="First Name"
-                name="firstName"
-                value={profile.firstName}
-                onChange={handleChange}
-                fullWidth
-                disabled={!isEditing}
-              />
-            </Grid>
-
-            {/* Middle Name */}
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Middle Name"
-                name="middleName"
-                value={profile.middleName}
-                onChange={handleChange}
-                fullWidth
-                disabled={!isEditing}
-              />
-            </Grid>
-
-            {/* Last Name */}
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Last Name"
-                name="lastName"
-                value={profile.lastName}
-                onChange={handleChange}
-                fullWidth
-                disabled={!isEditing}
-              />
-            </Grid>
-
-            {/* Father's Name */}
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Father's Name"
-                name="fatherName"
-                value={profile.fatherName}
-                onChange={handleChange}
-                fullWidth
-                disabled={!isEditing}
-              />
-            </Grid>
-
-            {/* Phone Number */}
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Phone Number"
-                name="phoneNumber"
-                value={profile.phoneNumber}
-                onChange={handleChange}
-                fullWidth
-                disabled={!isEditing}
-              />
-            </Grid>
-
-            {/* Email */}
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Email"
-                name="email"
-                value={profile.email}
-                onChange={handleChange}
-                fullWidth
-                disabled={!isEditing}
-              />
-            </Grid>
-
-            {/* Date of Birth */}
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Date of Birth"
-                type="date"
-                name="dob"
-                value={profile.dob}
-                onChange={handleChange}
-                fullWidth
-                InputLabelProps={{ shrink: true }}
-                disabled={!isEditing}
-              />
-            </Grid>
-
-            {/* Gender Selection */}
-            <Grid item xs={12} sm={6}>
-              <FormControl fullWidth disabled={!isEditing}>
-                <InputLabel>Gender</InputLabel>
-                <Select name="gender" value={profile.gender} onChange={handleChange}>
-                  <MenuItem value="Male">Male</MenuItem>
-                  <MenuItem value="Female">Female</MenuItem>
-                  <MenuItem value="Other">Other</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-
-            {/* Home Address */}
-            <Grid item xs={12}>
-              <TextField
-                label="Home Address"
-                name="homeAddress"
-                value={profile.homeAddress}
-                onChange={handleChange}
-                fullWidth
-                disabled={!isEditing}
-              />
-            </Grid>
-
-            {/* Office Address */}
-            <Grid item xs={12}>
-              <TextField
-                label="Office Address"
-                name="officeAddress"
-                value={profile.officeAddress}
-                onChange={handleChange}
-                fullWidth
-                disabled={!isEditing}
-              />
-            </Grid>
-
-            {/* Pincode */}
-            <Grid item xs={12} sm={6}>
-              <TextField
-                label="Pincode"
-                name="pincode"
-                value={profile.pincode}
-                onChange={handleChange}
-                fullWidth
-                disabled={!isEditing}
-              />
-            </Grid>
-
-            {/* Edit & Save Buttons */}
-            <Grid item xs={12} sx={{ textAlign: "center", mt: 2 }}>
-              {isEditing ? (
-                <Button variant="contained" color="success" onClick={handleSave}>
-                  Save Changes
-                </Button>
-              ) : (
-                <Button variant="contained" color="primary" onClick={() => setIsEditing(true)}>
-                  Edit Profile
-                </Button>
-              )}
-            </Grid>
-          </Grid>
-        </Box>
-      )}
+</Box>
+)}
     </Box>
   );
 }
