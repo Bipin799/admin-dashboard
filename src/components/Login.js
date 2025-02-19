@@ -13,8 +13,8 @@ const Login = () => {
 
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
-    if (loggedInUser?.role) {
+   // console.log("loggedInUser",loggedInUser);
+    if (loggedInUser?.role) { 
       switch (loggedInUser.role) {
         case "admin":
           navigate("/admin-dashboard");
@@ -33,13 +33,11 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!email.trim() || !password.trim()) {
       setError("Email and password are required.");
       toast.error("⚠️ Email and password cannot be empty!");
       return;
     }
-
     axios
       .get("http://localhost:5000/loggedInUsers")
       .then((response) => {
@@ -71,7 +69,6 @@ const Login = () => {
           "Logged-in User Saved:",
           JSON.parse(localStorage.getItem("loggedInUser"))
         );
-
         // ✅ Successful login
         toast.success("🎉 Login Successful!");
 
@@ -98,7 +95,6 @@ const Login = () => {
         console.error("Login Error:", error);
       });
   };
-
   return (
     <div className="login-container">
       <form onSubmit={handleSubmit}>
@@ -137,5 +133,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;

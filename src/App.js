@@ -7,8 +7,6 @@ import CustomerDashboard from "./components/CustomerDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./components/NotFound";
 import ProductDetails from "./components/ProductDetails";
-//import DashboardPage from "./components/DashboardPage";
-
 const App = () => {
   return (
     <Router>
@@ -23,10 +21,8 @@ const App = () => {
         </Route>
 
         <Route element={<ProtectedRoute allowedRoles={["client"]} />}>
-          <Route path="/client-dashboard" element={<ClientDashboard />} />
+          <Route path="/client-dashboard" element={<ClientDashboard />} /> ✅ No nested routes
         </Route>
-
-        {/* <Route path="/client-dashboard" element={<ClientDashboard/>}/> */}
 
         <Route element={<ProtectedRoute allowedRoles={["customer"]} />}>
           <Route path="/customer-dashboard" element={<CustomerDashboard />} />
@@ -38,9 +34,9 @@ const App = () => {
 
         {/* ✅ 404 Route */}
         <Route path="*" element={<NotFound />} />
-
       </Routes>
     </Router>
   );
 };
+
 export default App;
