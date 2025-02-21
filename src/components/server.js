@@ -21,7 +21,8 @@ const router = jsonServer.router(mergedData);
 server.use(middlewares);
 server.use(router);
 
+// Set the PORT explicitly for Render
 const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => {
+server.listen(PORT, "0.0.0.0", () => {
   console.log(`JSON Server is running on port ${PORT}`);
 });
