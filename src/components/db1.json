@@ -15,11 +15,11 @@
       "role": "client"
     },
     {
-      "id": "4",
+      "name": "aman",
       "email": "aman@123gmail.com",
       "password": "Aman@123",
       "role": "customer",
-      "name": "aman"
+      "id": "4"
     },
     {
       "id": "5",
@@ -40,6 +40,13 @@
       "name": "bipin prajapati",
       "email": "priya@123gmail.com",
       "password": "Priya@123",
+      "role": "customer"
+    },
+    {
+      "id": "8",
+      "name": "akash",
+      "email": "bipin79it@gmail.com",
+      "password": "Bipin@123",
       "role": "customer"
     }
   ]
