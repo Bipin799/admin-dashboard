@@ -10,7 +10,6 @@ const ProductDetails = () => {
   // ✅ Check if user is logged in
   const storedUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-
   useEffect(() => {
     if (!storedUser) {
         // ❌ Redirect to unauthorized page if user is not logged in

@@ -1,14 +1,21 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./components/Login";
-import AdminDashboard from "./components/AdminDashboard";
-import ClientDashboard from "./components/ClientDashboard";
-import CustomerDashboard from "./components/CustomerDashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
-import NotFound from "./components/NotFound";
-import ProductDetails from "./components/ProductDetails";
+import Login from "./pages/Login";
+import AdminDashboard from "./pages/AdminDashboard";
+import ClientDashboard from "./pages/ClientDashboard";
+import CustomerDashboard from "./pages/CustomerDashboard";
+import ProtectedRoute from "./router/ProtectedRoute";
+import NotFound from "./pages/NotFound";
+import ProductDetails from "./pages/ProductDetails";
+import UserList from "./components/UserList";
+import DataTable from "./pages/DataTable";
+
 const App = () => {
+  //console.log("Product API:", process.env.REACT_APP_PRODUCT_API_URL);
+  // console.log("Users API:", process.env.REACT_APP_USERS_API_URL);
+
   return (
+    <React.Fragment>
     <Router>
       <Routes>
         {/* ✅ Public Routes */}
@@ -33,9 +40,17 @@ const App = () => {
         <Route path="/" element={<Login />} />
 
         {/* ✅ 404 Route */}
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFound /> }/>
+
+        <Route path="/user" element={ <UserList />} />
+        <Route path="/table" element={<DataTable/>}/>
       </Routes>
     </Router>
+
+   
+
+</React.Fragment>
+
   );
 };
 

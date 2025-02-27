@@ -20,27 +20,6 @@
       "password": "Aman@123",
       "role": "customer",
       "name": "aman"
-    },
-    {
-      "id": "5",
-      "name": "rakesh",
-      "email": "rakesh@123gmail.com",
-      "password": "Rakesh@123",
-      "role": "customer"
-    },
-    {
-      "id": "6",
-      "name": "akash singh",
-      "email": "priya@123gmail.com",
-      "password": "Priya@123",
-      "role": "client"
-    },
-    {
-      "id": "7",
-      "name": "bipin prajapati",
-      "email": "priya@123gmail.com",
-      "password": "Priya@123",
-      "role": "customer"
     }
   ]
 }

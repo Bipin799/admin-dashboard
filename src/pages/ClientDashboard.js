@@ -159,14 +159,11 @@ function DemoPageContent({ pathname}) {
       };
     });
   };
-
-
       // Calculate total price of items in the cart
   const totalPrice = Object.values(cart).reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
-  );
-  
+  ); 
     // Handle Buy Now Click → Show Payment Options
     const handleBuyNow = () => {
       setShowPayment(true);

@@ -1,17 +1,21 @@
+
 import React, { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
 const CustomerDashboard = () => {
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
   const [editedData, setEditedData] = useState({ title: "", description: "", price: "" });
   const navigate = useNavigate();
+  
+ const PRODUCT_API_URL = process.env.REACT_APP_PRODUCT_API_URL;
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products")
+    fetch(PRODUCT_API_URL)
       .then((res) => res.json())
       .then((data) => setProducts(data.products))
       .catch((error) => console.error("Error fetching products:", error));
@@ -171,40 +175,4 @@ const CustomerDashboard = () => {
     </div>
   );
 };
-
 export default CustomerDashboard;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
